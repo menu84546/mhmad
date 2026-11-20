@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>مطعم الحمود والسمير | منيو الحلويات</title>
+
+  <!-- PWA Colors & iOS Meta -->
+  <meta name="theme-color" content="#d4af37">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="الحمود والسمير">
+  <link id="appleIconLink" rel="apple-touch-icon" href="">
+  <link id="manifestLink" rel="manifest" href="">
+
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #0e0e11;
+      --card-bg: #18181d;
+      --text-color: #f5f5f7;
+      --subtext-color: #a1a1aa;
+      --gold: #d4af37;
+      --gold-hover: #f0c94b;
+      --border-color: #2b2b33;
+      --btn-text: #0e0e11;
+      --shadow: 0 8px 24px rgba(0,0,0,0.45);
+    }
+
+    body.light-mode {
+      --bg-color: #f8f6f2;
+      --card-bg: #ffffff;
+      --text-color: #1c1917;
+      --subtext-color: #57534e;
+      --gold: #b8860b;
+      --gold-hover: #9a7008;
+      --border-color: #e7e5e4;
+      --btn-text: #ffffff;
+      --shadow: 0 8px 24px rgba(0,0,0,0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      transition: background-color 0.25s, color 0.25s, border-color 0.25s;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Cairo', 'Poppins', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      padding-bottom: 130px;
+    }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background-color: var(--card-bg);
+      border-bottom: 1px solid var(--border-color);
+      padding: 12px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      box-shadow: var(--shadow);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+    }
+
+    .logo-badge {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #d4af37, #8a6d1b);
+      color: #0e0e11;
+      font-weight: 800;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cairo', sans-serif;
+      overflow: hidden;
+    }
+
+    .brand h1 {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--gold);
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 7px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .icon-btn {
+      background: var(--bg-color);
+      color: var(--text-color);
+      border: 1px solid var(--border-color);
+      padding: 7px 11px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 0.82rem;
+      font-family: inherit;
+    }
+
+    .icon-btn:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .home-btn {
+      border-color: rgba(212, 175, 55, 0.45);
+      color: var(--gold);
+    }
+
+    /* Hero Banner */
+    .hero {
+      text-align: center;
+      padding: 28px 16px 14px;
+    }
+
+    .hero h2 {
+      font-size: 1.75rem;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    .hero p {
+      color: var(--subtext-color);
+      font-size: 0.95rem;
+    }
+
+    /* Search Bar */
+    .controls {
+      max-width: 1100px;
+      margin: 12px auto 22px;
+      padding: 0 16px;
+    }
+
+    .search-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .search-icon {
+      position: absolute;
+      inset-inline-start: 14px;
+      font-size: 1.1rem;
+      pointer-events: none;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 12px 42px;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+      background: var(--card-bg);
+      color: var(--text-color);
+      font-family: inherit;
+      font-size: 0.95rem;
+      outline: none;
+    }
+
+    .search-input:focus {
+      border-color: var(--gold);
+    }
+
+    .clear-search-btn {
+      position: absolute;
+      inset-inline-end: 12px;
+      background: none;
+      border: none;
+      color: var(--subtext-color);
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: none;
+    }
+
+    .clear-search-btn.visible {
+      display: block;
+    }
+
+    /* Grid */
+    .menu-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 16px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 18px;
+    }
+
+    .empty-state {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 36px 16px;
+      background: var(--card-bg);
+      border: 1px dashed var(--border-color);
+      border-radius: 16px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: var(--shadow);
+    }
+
+    .card:hover {
+      border-color: var(--gold);
+      transform: translateY(-2px);
+    }
+
+    .card-emoji {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    .card-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .card-desc {
+      font-size: 0.85rem;
+      color: var(--subtext-color);
+      margin-bottom: 14px;
+      line-height: 1.4;
+    }
+
+    .card-price {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+
+    .card-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .qty-box {
+      display: flex;
+      align-items: center;
+      background: var(--bg-color);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .qty-btn {
+      background: transparent;
+      border: none;
+      color: var(--gold);
+      font-size: 1.2rem;
+      font-weight: 800;
+      width: 34px;
+      height: 36px;
+      cursor: pointer;
+    }
+
+    .qty-btn:hover {
+      background: rgba(212, 175, 55, 0.15);
+    }
+
+    .qty-val {
+      min-width: 28px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    .add-btn {
+      flex: 1;
+      background: var(--gold);
+      color: var(--btn-text);
+      border: none;
+      border-radius: 10px;
+      height: 38px;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+
+    .add-btn:hover {
+      background: var(--gold-hover);
+    }
+
+    /* Install App Button (فوق كبسة السلة مباشرة) */
+    .install-app-btn {
+      position: fixed;
+      bottom: 82px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--card-bg);
+      color: var(--gold);
+      border: 1.5px solid var(--gold);
+      padding: 8px 20px;
+      border-radius: 50px;
+      font-weight: 800;
+      font-size: 0.88rem;
+      font-family: inherit;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.45);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      z-index: 98;
+    }
+
+    .install-app-btn:hover {
+      background: var(--gold);
+      color: var(--btn-text);
+    }
+
+    /* Floating Cart Button */
+    .floating-cart {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--gold);
+      color: var(--btn-text);
+      border: none;
+      padding: 14px 28px;
+      border-radius: 50px;
+      font-weight: 800;
+      font-size: 1rem;
+      font-family: inherit;
+      box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      z-index: 99;
+    }
+
+    /* Modals */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.75);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 18px;
+      width: 100%;
+      max-width: 520px;
+      max-height: 85vh;
+      overflow-y: auto;
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 10px;
+    }
+
+    .modal-header h3 {
+      color: var(--gold);
+      font-size: 1.25rem;
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      color: var(--subtext-color);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .cart-item, .admin-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border-color);
+      gap: 10px;
+    }
+
+    .admin-price-input {
+      width: 95px;
+      padding: 6px 10px;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-color);
+      color: var(--text-color);
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .full-btn {
+      width: 100%;
+      padding: 12px;
+      margin-top: 14px;
+      border-radius: 12px;
+      border: none;
+      background: var(--gold);
+      color: var(--btn-text);
+      font-weight: 800;
+      font-size: 1rem;
+      font-family: inherit;
+      cursor: pointer;
+    }
+
+    .secondary-btn {
+      background: #2b2b33;
+      color: #fff;
+      margin-top: 8px;
+    }
+
+    .toast {
+      position: fixed;
+      top: 85px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--gold);
+      color: var(--btn-text);
+      padding: 10px 22px;
+      border-radius: 30px;
+      font-weight: 700;
+      z-index: 300;
+      display: none;
+    }
+  </style>
+</head>
+<body id="top">
+
+  <header>
+    <div class="brand" onclick="goHome()">
+      <div class="logo-badge" id="headerLogoBadge">ح & س</div>
+      <h1 id="brandTitle">مطعم الحمود والسمير</h1>
+    </div>
+    <div class="header-actions">
+      <button class="icon-btn home-btn" onclick="goHome()" id="homeBtn">🏠 الرئيسية</button>
+      <button class="icon-btn" onclick="toggleLang()" id="langBtn">EN</button>
+      <button class="icon-btn" onclick="toggleTheme()" id="themeBtn">☀️</button>
+      <button class="icon-btn" onclick="openAdminModal()" id="adminBtn">⚙️ الإدارة</button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <h2 id="heroTitle">أفخم أنواع الحلويات الشرقية والغربية</h2>
+    <p id="heroSub">اختر أصنافكم المفضلة وأضيفوها للسلة بكل سهولة</p>
+  </section>
+
+  <div class="controls">
+    <div class="search-wrapper">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="searchInput" class="search-input" placeholder="ابحث عن صنف..." oninput="handleSearchInput()" />
+      <button class="clear-search-btn" id="clearSearchBtn" onclick="clearSearch()" title="مسح البحث">&times;</button>
+    </div>
+  </div>
+
+  <main class="menu-grid" id="menuGrid">
+    <p style="text-align:center; grid-column: 1/-1; color: var(--subtext-color);">جاري تحميل القائمة...</p>
+  </main>
+
+  <!-- كبسة التنزيل فوق كبسة السلة مباشرة -->
+  <button class="install-app-btn" id="installAppBtn" onclick="installPWA()">
+    <span>📲</span>
+    <span id="installBtnText">تنزيل التطبيق</span>
+  </button>
+
+  <button class="floating-cart" onclick="openCartModal()">
+    <span>🛒</span>
+    <span id="cartBtnText">السلة</span>
+    <span id="cartBadge">(0)</span>
+  </button>
+
+  <!-- Cart Modal -->
+  <div class="modal-overlay" id="cartModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 id="cartModalTitle">سلة المشتريات</h3>
+        <button class="close-btn" onclick="closeModal('cartModal')">&times;</button>
+      </div>
+      <div id="cartItemsContainer"></div>
+      <div style="margin-top:16px; display:flex; justify-content:space-between; font-weight:800; font-size:1.1rem;">
+        <span id="totalLabel">المجموع الكلي:</span>
+        <span id="cartTotal" style="color:var(--gold);">0</span>
+      </div>
+      <button class="full-btn" onclick="checkoutWhatsApp()" id="checkoutBtn">إرسال الطلب عبر واتساب 📲</button>
+    </div>
+  </div>
+
+  <!-- Admin Modal -->
+  <div class="modal-overlay" id="adminModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 id="adminModalTitle">إدارة القائمة والأسعار</h3>
+        <button class="close-btn" onclick="closeModal('adminModal')">&times;</button>
+      </div>
+      <div id="adminItemsContainer"></div>
+      <button class="full-btn" onclick="saveAdminPrices()" id="savePricesBtn">حفظ التعديلات في السحابة ☁️</button>
+      <button class="full-btn secondary-btn" onclick="seedDefaultItems()" id="seedBtn">تحديث الأصناف الافتراضية (20 صنف)</button>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // 1. توليد أيقونة SVG مدمجة للوغو والتطبيق بدون ملفات خارجية
+    const logoSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+      <rect width="512" height="512" rx="110" fill="#0e0e11"/>
+      <rect x="64" y="64" width="384" height="384" rx="84" fill="none" stroke="#d4af37" stroke-width="18"/>
+      <path d="M195 170 v95 c0 28-18 42-18 42 v93 M225 170 v55 M255 170 v55 M225 225 v175" stroke="#d4af37" stroke-width="18" stroke-linecap="round" fill="none"/>
+      <ellipse cx="325" cy="215" rx="34" ry="48" fill="none" stroke="#d4af37" stroke-width="18"/>
+      <line x1="325" y1="263" x2="325" y2="400" stroke="#d4af37" stroke-width="18" stroke-linecap="round"/>
+      <text x="256" y="136" text-anchor="middle" fill="#d4af37" font-family="Cairo, Arial, sans-serif" font-size="52" font-weight="800">ح &amp; س</text>
+    </svg>`;
+
+    const logoDataUrl = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(logoSvg);
+    document.getElementById("headerLogoBadge").innerHTML = `<img src="${logoDataUrl}" alt="Logo" style="width:100%;height:100%;object-fit:cover;border-radius:12px;">`;
+    document.getElementById("appleIconLink").href = logoDataUrl;
+
+    // 2. إنشاء Manifest ديناميكي مدمج داخل الكود
+    const manifestData = {
+      name: "مطعم الحمود والسمير",
+      short_name: "الحمود والسمير",
+      start_url: "./",
+      scope: "./",
+      display: "standalone",
+      orientation: "portrait",
+      background_color: "#0e0e11",
+      theme_color: "#d4af37",
+      icons: [
+        {
+          src: logoDataUrl,
+          sizes: "192x192",
+          type: "image/svg+xml",
+          purpose: "any maskable"
+        },
+        {
+          src: logoDataUrl,
+          sizes: "512x512",
+          type: "image/svg+xml",
+          purpose: "any maskable"
+        }
+      ]
+    };
+    const manifestBlob = new Blob([JSON.stringify(manifestData)], { type: "application/manifest+json" });
+    const manifestUrl = URL.createObjectURL(manifestBlob);
+    document.getElementById("manifestLink").href = manifestUrl;
+
+    // 3. تسجيل Service Worker مدمج عبر Blob (يعمل على HTTPS و localhost)
+    if ("serviceWorker" in navigator) {
+      const swCode = `
+        self.addEventListener("install", (event) => {
+          self.skipWaiting();
+        });
+        self.addEventListener("activate", (event) => {
+          event.waitUntil(clients.claim());
+        });
+        self.addEventListener("fetch", (event) => {
+          if (event.request.method !== "GET") return;
+          event.respondWith(
+            fetch(event.request).catch(() => caches.match(event.request))
+          );
+        });
+      `;
+      const swBlob = new Blob([swCode], { type: "application/javascript" });
+      const swUrl = URL.createObjectURL(swBlob);
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register(swUrl).catch(() => {});
+      });
+    }
+  </script>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getFirestore, collection, onSnapshot, doc, writeBatch } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyA83i03eu3tAowkJCGBc5PJvpqqkPeNLm0",
+      authDomain: "mhmad-9fc34.firebaseapp.com",
+      projectId: "mhmad-9fc34",
+      storageBucket: "mhmad-9fc34.firebasestorage.app",
+      messagingSenderId: "535693307214",
+      appId: "1:535693307214:web:76e01b0ef5cb553f93021f",
+      measurementId: "G-1EJMTZVW8G"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const menuRef = collection(db, "ms_sweets_menu");
+
+    const defaultSweets = [
+      { id: "item_01", emoji: "🥧", name_ar: "كنافة نابلسية بالجبن", name_en: "Nabulsi Cheese Kunafa", desc_ar: "كنافة ساخنة بالجبنة العكاوي والقطر الفاخر", desc_en: "Hot kunafa with Akkawi cheese & syrup", price: 15000 },
+      { id: "item_02", emoji: "🥮", name_ar: "بقلاوة بالفستق الحلبي", name_en: "Pistachio Baklava", desc_ar: "رقائق مقرمشة محشوة بأجود أنواع الفستق الحلبي", desc_en: "Crispy layers stuffed with premium pistachios", price: 25000 },
+      { id: "item_03", emoji: "🍰", name_ar: "تشيز كيك لوتس", name_en: "Lotus Cheesecake", desc_ar: "طبقة كريمية غنية مع زبدة وبسكويت اللوتس", desc_en: "Creamy cheesecake topped with Lotus Biscoff", price: 18000 },
+      { id: "item_04", emoji: "🍫", name_ar: "مولتن كيك شوكولا", name_en: "Chocolate Molten Cake", desc_ar: "كيك شوكولا دافئ محشو بالشوكولا السائحة", desc_en: "Warm chocolate cake with molten fudge center", price: 16000 },
+      { id: "item_05", emoji: "🍮", name_ar: "حلاوة الجبن بالقشطة", name_en: "Halawet El Jibn", desc_ar: "عجينة الجبن الطرية محشوة بالقشطة البلدية", desc_en: "Sweet cheese rolls stuffed with fresh cream", price: 14000 },
+      { id: "item_06", emoji: "🍩", name_ar: "دونات نوتيلا", name_en: "Nutella Donut", desc_ar: "دونات هش مغطى بشوكولا النوتيلا والبندق", desc_en: "Fluffy donut glazed with Nutella & hazelnuts", price: 8000 },
+      { id: "item_07", emoji: "🧇", name_ar: "وافل بلجيكي فواكه", name_en: "Belgian Fruit Waffle", desc_ar: "وافل مقرمش مع فراولة وموز وصوص شوكولا", desc_en: "Crispy waffle with strawberries, banana & chocolate", price: 17000 },
+      { id: "item_08", emoji: "🥞", name_ar: "بان كيك بستاشيو", name_en: "Pistachio Pancakes", desc_ar: "طبقات بان كيك طرية مع كريمة الفستق الحلبي", desc_en: "Fluffy pancakes drizzled with pistachio cream", price: 19000 },
+      { id: "item_09", emoji: "🍨", name_ar: "آيس كريم عربي بالفستق", name_en: "Arabic Pistachio Ice Cream", desc_ar: "بوظة عربية بالمستكة مغطاة بالفستق الحلبي", desc_en: "Mastic stretchy ice cream rolled in pistachios", price: 12000 },
+      { id: "item_10", emoji: "🧁", name_ar: "كب كيك ريد فيلفيت", name_en: "Red Velvet Cupcake", desc_ar: "كب كيك مخملي أحمر مع كريمة الجبن", desc_en: "Red velvet sponge topped with cream cheese frosting", price: 9000 },
+      { id: "item_11", emoji: "🍪", name_ar: "كوكيز شوكولا تشيبس", name_en: "Choco Chip Cookies", desc_ar: "كوكيز طري من الداخل ومقرمش من الخارج", desc_en: "Soft-baked cookies loaded with chocolate chunks", price: 7000 },
+      { id: "item_12", emoji: "🍯", name_ar: "عوامة مقرمشة بالقطر", name_en: "Crispy Luqaimat", desc_ar: "كرات ذهبية مقرمشة مغطاة بالقطر والسمسم", desc_en: "Golden crispy dumplings drizzled with sweet syrup", price: 10000 },
+      { id: "item_13", emoji: "🥐", name_ar: "كرواسون لوز وشوكولا", name_en: "Almond Choco Croissant", desc_ar: "كرواسون فرنسي مورق بحشوة الشوكولا واللوز", desc_en: "Flaky French croissant filled with chocolate & almonds", price: 11000 },
+      { id: "item_14", emoji: "🍰", name_ar: "تيراميسو إيطالي", name_en: "Classic Tiramisu", desc_ar: "طبقات بسكويت بالقهوة وكريمة الماسكاربوني", desc_en: "Espresso-soaked ladyfingers with mascarpone cream", price: 18000 },
+      { id: "item_15", emoji: "🥧", name_ar: "معمول بالتمر والجوز", name_en: "Date & Walnut Maamoul", desc_ar: "معمول هش بالسمن الحيواني الفاخر", desc_en: "Traditional shortbread cookies filled with dates & walnuts", price: 13000 },
+      { id: "item_16", emoji: "🍮", name_ar: "كريم كراميل", name_en: "Creme Caramel", desc_ar: "بودينغ الفانيلا الناعم مع صلصة الكراميل", desc_en: "Silky vanilla custard topped with rich caramel sauce", price: 10000 },
+      { id: "item_17", emoji: "🍫", name_ar: "براونيز بالآيس كريم", name_en: "Fudge Brownie Sundae", desc_ar: "قطعة براونيز غنية مع كرة آيس كريم فانيلا", desc_en: "Rich chocolate brownie served with vanilla scoop", price: 16000 },
+      { id: "item_18", emoji: "🍓", name_ar: "تارت الفراولة الطازجة", name_en: "Fresh Strawberry Tart", desc_ar: "عجينة تارت مقرمشة مع كاسترد وفراولة طازجة", desc_en: "Crisp pastry shell with custard & fresh strawberries", price: 15000 },
+      { id: "item_19", emoji: "🥥", name_ar: "بسبوسة بالقشطة", name_en: "Cream Basbousa", desc_ar: "بسبوسة السميد الذهبية محشوة بالقشطة الطازجة", desc_en: "Golden semolina cake layered with fresh cream", price: 12000 },
+      { id: "item_20", emoji: "🍨", name_ar: "كريب نوتيلا وموز", name_en: "Nutella Banana Crepe", desc_ar: "كريب رقيق محشو بالنوتيلا وشرائح الموز الطازج", desc_en: "Thin French crepe filled with Nutella & fresh bananas", price: 15000 }
+    ];
+
+    let menuItems = [];
+    let cardQuantities = {};
+    let cart = {};
+    let currentLang = "ar";
+    let deferredPrompt = null;
+
+    window.addEventListener("beforeinstallprompt", (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+    });
+
+    window.installPWA = async function() {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        if (outcome === "accepted") {
+          showToast(currentLang === "ar" ? "تم تنزيل التطبيق بنجاح ✓" : "App installed successfully ✓");
+        }
+        deferredPrompt = null;
+      } else {
+        const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+        if (isIOS) {
+          showToast("من سفاري اضغط مشاركة ⬆️ ثم إضافة إلى الشاشة الرئيسية");
+        } else {
+          showToast("افتح من Chrome عبر HTTPS ثم اختر تثبيت التطبيق من القائمة");
+        }
+      }
+    };
+
+    onSnapshot(menuRef, (snapshot) => {
+      if (snapshot.empty) {
+        menuItems = [...defaultSweets];
+      } else {
+        menuItems = [];
+        snapshot.forEach((docSnap) => {
+          menuItems.push({ id: docSnap.id, ...docSnap.data() });
+        });
+        menuItems.sort((a, b) => a.id.localeCompare(b.id));
+      }
+      renderMenu();
+    }, () => {
+      menuItems = [...defaultSweets];
+      renderMenu();
+    });
+
+    window.seedDefaultItems = async function() {
+      try {
+        const batch = writeBatch(db);
+        defaultSweets.forEach((item) => {
+          const docRef = doc(db, "ms_sweets_menu", item.id);
+          batch.set(docRef, item);
+        });
+        await batch.commit();
+        showToast(currentLang === "ar" ? "تم رفع 20 صنف بنجاح إلى Firebase!" : "20 items uploaded to Firebase!");
+        renderAdminList();
+      } catch (e) {
+        alert("خطأ في الصلاحيات! تأكد من إعداد قواعد Firestore Rules.\n" + e.message);
+      }
+    };
+
+    window.goHome = function() {
+      closeModal("cartModal");
+      closeModal("adminModal");
+      const input = document.getElementById("searchInput");
+      if (input.value) {
+        input.value = "";
+        document.getElementById("clearSearchBtn").classList.remove("visible");
+        renderMenu();
+      }
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      showToast(currentLang === "ar" ? "القائمة الرئيسية" : "Home Menu");
+    };
+
+    window.handleSearchInput = function() {
+      const val = document.getElementById("searchInput").value;
+      const clearBtn = document.getElementById("clearSearchBtn");
+      if (val.trim().length > 0) {
+        clearBtn.classList.add("visible");
+      } else {
+        clearBtn.classList.remove("visible");
+      }
+      renderMenu();
+    };
+
+    window.clearSearch = function() {
+      document.getElementById("searchInput").value = "";
+      document.getElementById("clearSearchBtn").classList.remove("visible");
+      renderMenu();
+    };
+
+    window.renderMenu = function() {
+      const grid = document.getElementById("menuGrid");
+      const query = document.getElementById("searchInput").value.trim().toLowerCase();
+      grid.innerHTML = "";
+
+      const filtered = menuItems.filter(item => {
+        const nameAr = (item.name_ar || "").toLowerCase();
+        const nameEn = (item.name_en || "").toLowerCase();
+        const descAr = (item.desc_ar || "").toLowerCase();
+        const descEn = (item.desc_en || "").toLowerCase();
+        return nameAr.includes(query) || nameEn.includes(query) || descAr.includes(query) || descEn.includes(query);
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div class="empty-state">
+            <p style="margin-bottom:12px; color:var(--subtext-color);">
+              ${currentLang === "ar" ? "لا يوجد صنف يطابق بحثك" : "No matching items found"}
+            </p>
+            <button class="icon-btn home-btn" onclick="goHome()">
+              ${currentLang === "ar" ? "🏠 العودة للرئيسية" : "🏠 Back to Home"}
+            </button>
+          </div>
+        `;
+        return;
+      }
+
+      filtered.forEach(item => {
+        if (!cardQuantities[item.id]) cardQuantities[item.id] = 1;
+        const name = currentLang === "ar" ? item.name_ar : item.name_en;
+        const desc = currentLang === "ar" ? item.desc_ar : item.desc_en;
+        const currency = currentLang === "ar" ? "ل.س" : "SYP";
+        const addText = currentLang === "ar" ? "أضف للسلة" : "Add to Cart";
+
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `
+          <div>
+            <div class="card-emoji">${item.emoji || "🍰"}</div>
+            <div class="card-title">${name}</div>
+            <div class="card-desc">${desc}</div>
+          </div>
+          <div>
+            <div class="card-price">${Number(item.price).toLocaleString()} ${currency}</div>
+            <div class="card-controls">
+              <div class="qty-box">
+                <button class="qty-btn" onclick="changeCardQty('${item.id}', -1)">-</button>
+                <span class="qty-val" id="qty_${item.id}">${cardQuantities[item.id]}</span>
+                <button class="qty-btn" onclick="changeCardQty('${item.id}', 1)">+</button>
+              </div>
+              <button class="add-btn" onclick="addToCart('${item.id}')">${addText}</button>
+            </div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    };
+
+    window.changeCardQty = function(id, delta) {
+      cardQuantities[id] = Math.max(1, (cardQuantities[id] || 1) + delta);
+      document.getElementById(`qty_${id}`).innerText = cardQuantities[id];
+    };
+
+    window.addToCart = function(id) {
+      const qty = cardQuantities[id] || 1;
+      cart[id] = (cart[id] || 0) + qty;
+      cardQuantities[id] = 1;
+      document.getElementById(`qty_${id}`).innerText = 1;
+      updateCartBadge();
+      showToast(currentLang === "ar" ? "تمت الإضافة إلى السلة ✓" : "Added to cart ✓");
+    };
+
+    function updateCartBadge() {
+      const totalCount = Object.values(cart).reduce((a, b) => a + b, 0);
+      document.getElementById("cartBadge").innerText = `(${totalCount})`;
+    }
+
+    window.openCartModal = function() {
+      renderCartItems();
+      document.getElementById("cartModal").classList.add("active");
+    };
+
+    function renderCartItems() {
+      const container = document.getElementById("cartItemsContainer");
+      container.innerHTML = "";
+      let total = 0;
+      const currency = currentLang === "ar" ? "ل.س" : "SYP";
+
+      const ids = Object.keys(cart).filter(id => cart[id] > 0);
+      if (ids.length === 0) {
+        container.innerHTML = `<p style="text-align:center; color:var(--subtext-color); padding:20px 0;">${currentLang === "ar" ? "السلة فارغة حالياً" : "Your cart is empty"}</p>`;
+        document.getElementById("cartTotal").innerText = `0 ${currency}`;
+        return;
+      }
+
+      ids.forEach(id => {
+        const item = menuItems.find(i => i.id === id);
+        if (!item) return;
+        const qty = cart[id];
+        const subTotal = item.price * qty;
+        total += subTotal;
+        const name = currentLang === "ar" ? item.name_ar : item.name_en;
+
+        const row = document.createElement("div");
+        row.className = "cart-item";
+        row.innerHTML = `
+          <div>
+            <strong>${name}</strong><br>
+            <small style="color:var(--gold);">${Number(subTotal).toLocaleString()} ${currency}</small>
+          </div>
+          <div class="qty-box">
+            <button class="qty-btn" onclick="updateCartItem('${id}', -1)">-</button>
+            <span class="qty-val">${qty}</span>
+            <button class="qty-btn" onclick="updateCartItem('${id}', 1)">+</button>
+          </div>
+        `;
+        container.appendChild(row);
+      });
+
+      document.getElementById("cartTotal").innerText = `${Number(total).toLocaleString()} ${currency}`;
+    }
+
+    window.updateCartItem = function(id, delta) {
+      cart[id] = (cart[id] || 0) + delta;
+      if (cart[id] <= 0) delete cart[id];
+      updateCartBadge();
+      renderCartItems();
+    };
+
+    window.checkoutWhatsApp = function() {
+      const ids = Object.keys(cart).filter(id => cart[id] > 0);
+      if (ids.length === 0) return;
+
+      let msg = currentLang === "ar" ? "مرحباً مطعم الحمود والسمير، أود طلب الأصناف التالية:\n\n" : "Hello, I would like to order:\n\n";
+      let total = 0;
+
+      ids.forEach(id => {
+        const item = menuItems.find(i => i.id === id);
+        const qty = cart[id];
+        const sub = item.price * qty;
+        total += sub;
+        const name = currentLang === "ar" ? item.name_ar : item.name_en;
+        msg += `• ${name} (x${qty}) = ${sub.toLocaleString()}\n`;
+      });
+
+      msg += `\n${currentLang === "ar" ? "المجموع الكلي:" : "Total:"} ${total.toLocaleString()}`;
+
+      const phone = "9639xxxxxxxx";
+      window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, "_blank");
+    };
+
+    window.openAdminModal = function() {
+      const pass = prompt(currentLang === "ar" ? "أدخل كلمة مرور الإدارة (الافتراضية: 1234):" : "Enter Admin Password (default: 1234):");
+      if (pass !== "1234") {
+        alert(currentLang === "ar" ? "كلمة المرور غير صحيحة!" : "Incorrect password!");
+        return;
+      }
+      renderAdminList();
+      document.getElementById("adminModal").classList.add("active");
+    };
+
+    function renderAdminList() {
+      const container = document.getElementById("adminItemsContainer");
+      container.innerHTML = "";
+      menuItems.forEach(item => {
+        const name = currentLang === "ar" ? item.name_ar : item.name_en;
+        const row = document.createElement("div");
+        row.className = "admin-item";
+        row.innerHTML = `
+          <span>${item.emoji} ${name}</span>
+          <input type="number" class="admin-price-input" id="price_${item.id}" value="${item.price}" />
+        `;
+        container.appendChild(row);
+      });
+    }
+
+    window.saveAdminPrices = async function() {
+      try {
+        const batch = writeBatch(db);
+        menuItems.forEach(item => {
+          const input = document.getElementById(`price_${item.id}`);
+          if (input) {
+            const newPrice = Number(input.value);
+            const docRef = doc(db, "ms_sweets_menu", item.id);
+            batch.set(docRef, { ...item, price: newPrice });
+          }
+        });
+        await batch.commit();
+        showToast(currentLang === "ar" ? "تم حفظ الأسعار الجديدة في السحابة ✓" : "Prices saved to cloud ✓");
+        closeModal("adminModal");
+      } catch (e) {
+        alert("حدث خطأ أثناء الحفظ في Firebase:\n" + e.message);
+      }
+    };
+
+    window.toggleTheme = function() {
+      document.body.classList.toggle("light-mode");
+      const isLight = document.body.classList.contains("light-mode");
+      document.getElementById("themeBtn").innerText = isLight ? "🌙" : "☀️";
+    };
+
+    window.toggleLang = function() {
+      currentLang = currentLang === "ar" ? "en" : "ar";
+      document.documentElement.lang = currentLang;
+      document.documentElement.dir = currentLang === "ar" ? "rtl" : "ltr";
+
+      document.getElementById("langBtn").innerText = currentLang === "ar" ? "EN" : "عربي";
+      document.getElementById("homeBtn").innerText = currentLang === "ar" ? "🏠 الرئيسية" : "🏠 Home";
+      document.getElementById("adminBtn").innerText = currentLang === "ar" ? "⚙️ الإدارة" : "⚙️ Admin";
+      document.getElementById("installBtnText").innerText = currentLang === "ar" ? "تنزيل التطبيق" : "Install App";
+
+      document.getElementById("brandTitle").innerText = currentLang === "ar" ? "مطعم الحمود والسمير" : "Al-Hamoud & Al-Samir Rest.";
+      document.getElementById("heroTitle").innerText = currentLang === "ar" ? "أفخم أنواع الحلويات الشرقية والغربية" : "Finest Oriental & Western Sweets";
+      document.getElementById("heroSub").innerText = currentLang === "ar" ? "اختر أصنافكم المفضلة وأضيفوها للسلة بكل سهولة" : "Choose your favorite items and add to cart";
+      document.getElementById("searchInput").placeholder = currentLang === "ar" ? "ابحث عن صنف..." : "Search item...";
+
+      document.getElementById("cartBtnText").innerText = currentLang === "ar" ? "السلة" : "Cart";
+      document.getElementById("cartModalTitle").innerText = currentLang === "ar" ? "سلة المشتريات" : "Shopping Cart";
+      document.getElementById("totalLabel").innerText = currentLang === "ar" ? "المجموع الكلي:" : "Total Amount:";
+      document.getElementById("checkoutBtn").innerText = currentLang === "ar" ? "إرسال الطلب عبر واتساب 📲" : "Order via WhatsApp 📲";
+
+      document.getElementById("adminModalTitle").innerText = currentLang === "ar" ? "إدارة القائمة والأسعار" : "Manage Menu & Prices";
+      document.getElementById("savePricesBtn").innerText = currentLang === "ar" ? "حفظ التعديلات في السحابة ☁️" : "Save Changes to Cloud ☁️";
+      document.getElementById("seedBtn").innerText = currentLang === "ar" ? "تحديث الأصناف الافتراضية (20 صنف)" : "Reset Default Items (20)";
+
+      renderMenu();
+    };
+
+    window.openModal = id => document.getElementById(id).classList.add("active");
+    window.closeModal = id => document.getElementById(id).classList.remove("active");
+
+    function showToast(msg) {
+      const t = document.getElementById("toast");
+      t.innerText = msg;
+      t.style.display = "block";
+      setTimeout(() => t.style.display = "none", 2500);
+    }
+  </script>
+</body>
+</html>
